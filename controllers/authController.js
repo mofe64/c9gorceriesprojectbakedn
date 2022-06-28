@@ -42,7 +42,7 @@ export const login = catchAsync(async (req, res, next) => {
   if (!verified) {
     return next(new AppError("Incorrect password given", 401));
   }
-  createSendToken(user, 200, res);
+  createAndSendToken(user, 200, res);
 });
 
 export const authenticate = catchAsync(async (req, res, next) => {
