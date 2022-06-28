@@ -39,7 +39,7 @@ export const login = catchAsync(async (req, res, next) => {
     return next(new AppError("No user found with that email", 401));
   }
   const verified = await bcrypt.compare(password, user.password);
-  if (verified) {
+  if (!verified) {
     return next(new AppError("Incorrect password given", 401));
   }
   createSendToken(user, 200, res);
